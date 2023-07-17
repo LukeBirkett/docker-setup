@@ -1,10 +1,14 @@
 {
-    "name": "Example 1",
+    "name": "${localEnv:ENV_NAME}",
     "build":{
-        "dockerfile": "../examples/ex-1/Dockerfile",
-        "context": "../examples/ex-1/"
+        "dockerfile": "Dockerfile",
+        "args": {"ENV_NAME": "${localEnv:ENV_NAME}",
+                 "PYTHON_VER": "${localEnv:PYTHON_VER}"}, 
+        "context": "."
     }, 
     "customizations": {
+        "settings": {
+            "python.defaultInterpreterPath": "/opt/conda/envs/${localEnv:ENV_NAME}/bin/python"},
         "vscode": {
             "extensions": [
                 "quarto.quarto",
@@ -17,5 +21,15 @@
                 "hediet.vscode-drawio"
             ]
         }
-    }  
+    },
+    "mounts": [
+            "source=${localEnv:CSV_PATH},target=/home/csv,type=bind,consistency=cache"
+    ],
+    "remoteEnv": {
+        "MY_VAR": "${localEnv:MY_VAR}"
+    // This allows env variables to be imported into container
+    },
+    "runArgs": ["--env-file",".devcontainer/devcontainer.env"],
+    // This allows you to import env files 
+    "postCreateCommand": "python3 tests/test1.py"      
 }
