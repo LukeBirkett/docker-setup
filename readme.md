@@ -30,3 +30,13 @@
 
 ### The option needed to run the container in VSCode
 `reopen in container`
+
+### Setting Up a Python Evironment
+The .devcontainer folder should have the following files:
+
+.
+├── Dockerfile
+├── devcontainer.env
+├── devcontainer.json
+├── install_dependencies.sh
+└── requirements.txt
