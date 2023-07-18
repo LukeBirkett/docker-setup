@@ -8,7 +8,7 @@
     }, 
     "customizations": {
         "settings": {
-            "python.defaultInterpreterPath": "/opt/conda/envs/${localEnv:ENV_NAME}/bin/python"},
+            "python.defaultInterpreterPath": "/venv/bin/python"},
         "vscode": {
             "extensions": [
                 "quarto.quarto",
